@@ -36,5 +36,5 @@ const cartSlice = createSlice({
   },
 });
 
-export const { toggle } = uiSlice.actions;
-export default uiSlice.reducer;
+export const { addItemToCart,removeItemFromCart } = cartSlice.actions;
+export default cartSlice.reducer;
