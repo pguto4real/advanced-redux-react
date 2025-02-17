@@ -1,15 +1,17 @@
-import classes from './CartItem.module.css';
-
+import classes from "./CartItem.module.css";
+import { currencyFormatter } from "../../util/formatting";
 const CartItem = (props) => {
-  const { title, quantity, total, price } = props.item;
+  const { title, quantity,price } = props.item;
 
   return (
     <li className={classes.item}>
       <header>
         <h3>{title}</h3>
         <div className={classes.price}>
-          ${total.toFixed(2)}{' '}
-          <span className={classes.itemprice}>(${price.toFixed(2)}/item)</span>
+          {currencyFormatter.format(price * quantity)}
+          <span className={classes.itemprice}>
+            ({currencyFormatter.format(price)}/item)
+          </span>
         </div>
       </header>
       <div className={classes.details}>
