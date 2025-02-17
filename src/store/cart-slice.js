@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { cartIsVisible:false};
+const initialState = { cartIsVisible: false };
 
 const uiSlice = createSlice({
   name: "ui",
@@ -9,7 +9,6 @@ const uiSlice = createSlice({
     toggle(state) {
       state.cartIsVisible = !state.cartIsVisible;
     },
-   
   },
 });
 
