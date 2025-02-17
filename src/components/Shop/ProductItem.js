@@ -1,6 +1,6 @@
 import Card from '../UI/Card';
 import classes from './ProductItem.module.css';
-import { currencyFormatter } from '../../../../food-app/src/util/formatting.js'; 
+import { currencyFormatter } from '../../util/formatting'
 
 const ProductItem = (props) => {
   const { title, price, description } = props;
