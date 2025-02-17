@@ -1,8 +1,16 @@
 import classes from "./CartItem.module.css";
 import { currencyFormatter } from "../../util/formatting";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../../store/cart-slice";
 const CartItem = (props) => {
+  console.log(props)
   const { title, quantity,price } = props.item;
 
+  const dispatch = useDispatch();
+
+  const addItemToCartHandler = () => {
+    dispatch(addItemToCart({item:props.cartData}));
+  };
   return (
     <li className={classes.item}>
       <header>
@@ -20,7 +28,7 @@ const CartItem = (props) => {
         </div>
         <div className={classes.actions}>
           <button>-</button>
-          <button>+</button>
+          <button onClick={addItemToCartHandler}>+</button>
         </div>
       </div>
     </li>
