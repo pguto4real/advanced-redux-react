@@ -7,9 +7,10 @@ const Products = (props) => {
     <section className={classes.products}>
       <h2>Buy your favorite products</h2>
       <ul>
-        {DUMMY_PRODUCTS.map(({ id, name, price, description, image }) => (
+        {DUMMY_PRODUCTS.map(({ id, name, price, description }) => (
           <ProductItem
             key={id}
+            id={id}
             title={name}
             price={price}
             description={description}

@@ -1,20 +1,28 @@
-import Card from '../UI/Card';
-import classes from './ProductItem.module.css';
-import { currencyFormatter } from '../../util/formatting'
+import Card from "../UI/Card";
+import classes from "./ProductItem.module.css";
+import { currencyFormatter } from "../../util/formatting";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../../store/cart-slice";
 
 const ProductItem = (props) => {
-  const { title, price, description } = props;
+  const dispatch = useDispatch();
+
+  const addItemToCartHandler = () => {
+    dispatch(addItemToCart(props));
+  };
 
   return (
     <li className={classes.item}>
       <Card>
         <header>
-          <h3>{title}</h3>
-          <div className={classes.price}>{currencyFormatter.format(price)}</div>
+          <h3>{props.title}</h3>
+          <div className={classes.price}>
+            {currencyFormatter.format(props.price)}
+          </div>
         </header>
-        <p>{description}</p>
+        <p>{props.description}</p>
         <div className={classes.actions}>
-          <button>Add to Cart</button>
+          <button onClick={addItemToCartHandler}>Add to Cart</button>
         </div>
       </Card>
     </li>
