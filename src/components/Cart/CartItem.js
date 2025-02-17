@@ -1,15 +1,18 @@
 import classes from "./CartItem.module.css";
 import { currencyFormatter } from "../../util/formatting";
 import { useDispatch } from "react-redux";
-import { addItemToCart } from "../../store/cart-slice";
+import { addItemToCart, removeItemFromCart } from "../../store/cart-slice";
 const CartItem = (props) => {
-  console.log(props)
-  const { title, quantity,price } = props.item;
+
+  const { title, quantity,price,id } = props.item;
 
   const dispatch = useDispatch();
 
   const addItemToCartHandler = () => {
     dispatch(addItemToCart({item:props.cartData}));
+  };
+  const removeItemFromCartHandler = () => {
+    dispatch(removeItemFromCart({id:id}));
   };
   return (
     <li className={classes.item}>
@@ -27,7 +30,7 @@ const CartItem = (props) => {
           x <span>{quantity}</span>
         </div>
         <div className={classes.actions}>
-          <button>-</button>
+          <button onClick={removeItemFromCartHandler}>-</button>
           <button onClick={addItemToCartHandler}>+</button>
         </div>
       </div>
