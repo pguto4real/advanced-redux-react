@@ -29,6 +29,14 @@ function App() {
       if (!response.ok) {
         throw new Error("Sending cart data failed");
       }
+
+      dispatch(
+        showNotification({
+          status: "success",
+          title: "Success...",
+          message: "Sent cart data successfully",
+        })
+      );
       // const responseData = await response.json();
     };
     sendCartData();
