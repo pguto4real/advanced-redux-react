@@ -10,13 +10,18 @@ function App() {
   console.log(cart);
   useEffect(() => {
     const sendCartData = async (params) => {
-      fetch(
+      const response = await fetch(
         "https://fir-practice-9c832-default-rtdb.firebaseio.com/cart.json",
         {
           method: "PUT",
           body: JSON.stringify(cart),
         }
       );
+if(!response.ok){
+  throw new Error("Sending cart data failed");
+  
+}
+      const responseData = await response.json();
     };
     sendCartData();
   }, [cart]);
