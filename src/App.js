@@ -17,11 +17,11 @@ function App() {
           body: JSON.stringify(cart),
         }
       );
-if(!response.ok){
-  throw new Error("Sending cart data failed");
-  
-}
+      if (!response.ok) {
+        throw new Error("Sending cart data failed");
+      }
       const responseData = await response.json();
+      
     };
     sendCartData();
   }, [cart]);
