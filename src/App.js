@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { showNotification } from "./store/ui-slice";
 import Notification from "./components/UI/Notification";
 
+let isInitial = true;
 function App() {
   const dispatch = useDispatch();
   const cartIsVisible = useSelector((state) => state.ui.cartIsVisible);
@@ -41,6 +42,10 @@ function App() {
       );
       // const responseData = await response.json();
     };
+    if (isInitial) {
+      isInitial = false;
+      return;
+    }
     sendCartData().catch((error) => {
       dispatch(
         showNotification({
