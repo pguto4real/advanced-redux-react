@@ -14,9 +14,13 @@ export const fetchCartData = () => {
     };
     try {
       const cartData = await fetchData();
-      console.log(cartData);
+    
       if (cartData) {
-        dispatch(replaceCart(cartData));
+        dispatch(replaceCart({
+            cartTotal: cartData.cartTotal,
+            items: cartData.items || [],
+            totalPrice: cartData.totalPrice,
+          }));
       }
     } catch (error) {
       dispatch(
