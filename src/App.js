@@ -4,14 +4,16 @@ import Layout from "./components/Layout/Layout";
 import Products from "./components/Shop/Products";
 import { useEffect } from "react";
 import { showNotification } from "./store/ui-slice";
+import Notification from "./components/UI/Notification";
 
 function App() {
   const dispatch = useDispatch();
   const cartIsVisible = useSelector((state) => state.ui.cartIsVisible);
   const cart = useSelector((state) => state.cart);
-  console.log(cart);
+  const notification = useSelector((state) => state.ui.notification);
+
   useEffect(() => {
-    const sendCartData = async (params) => {
+    const sendCartData = async () => {
       dispatch(
         showNotification({
           status: "pending",
@@ -49,12 +51,21 @@ function App() {
       );
     });
   }, [cart, dispatch]);
-
+  console.log(notification);
   return (
-    <Layout>
-      {cartIsVisible && <Cart />}
-      <Products />
-    </Layout>
+    <>
+      {notification && (
+        <Notification
+          status={notification.status}
+          title={notification.title}
+          message={notification.message}
+        />
+      )}
+      <Layout>
+        {cartIsVisible && <Cart />}
+        <Products />
+      </Layout>
+    </>
   );
 }
 
