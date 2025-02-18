@@ -9,10 +9,16 @@ function App() {
   const cart = useSelector((state) => state.cart);
   console.log(cart);
   useEffect(() => {
-    fetch("https://fir-practice-9c832-default-rtdb.firebaseio.com/cart.json", {
-      method: "PUT",
-      body: JSON.stringify(cart),
-    });
+    const sendCartData = async (params) => {
+      fetch(
+        "https://fir-practice-9c832-default-rtdb.firebaseio.com/cart.json",
+        {
+          method: "PUT",
+          body: JSON.stringify(cart),
+        }
+      );
+    };
+    sendCartData();
   }, [cart]);
 
   return (
