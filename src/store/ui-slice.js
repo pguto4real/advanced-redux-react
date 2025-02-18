@@ -10,6 +10,7 @@ const uiSlice = createSlice({
       state.cartIsVisible = !state.cartIsVisible;
     },
     showNotification(state, action) {
+      console.log(action.payload.status);
       state.notification = {
         status: action.payload.status,
         title: action.payload.title,
@@ -19,5 +20,5 @@ const uiSlice = createSlice({
   },
 });
 
-export const { toggle } = uiSlice.actions;
+export const { toggle, showNotification } = uiSlice.actions;
 export default uiSlice.reducer;
