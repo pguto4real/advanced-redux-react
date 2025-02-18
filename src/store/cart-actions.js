@@ -14,12 +14,10 @@ export const fetchCartData = () => {
     };
     try {
       const cartData = await fetchData();
-      console.log(cartData)
-      if(cartData)
-      {
+      console.log(cartData);
+      if (cartData) {
         dispatch(replaceCart(cartData));
       }
-  
     } catch (error) {
       dispatch(
         showNotification({
@@ -45,7 +43,11 @@ export const sendCartData = (cart) => {
         "https://fir-practice-9c832-default-rtdb.firebaseio.com/cart.json",
         {
           method: "PUT",
-          body: JSON.stringify(cart),
+          body: JSON.stringify({
+            cartTotal: cart.cartTotal,
+            items: cart.items,
+            totalPrice: cart.totalPrice,
+          }),
         }
       );
       if (!response.ok) {
