@@ -12,15 +12,16 @@ function App() {
   const cartIsVisible = useSelector((state) => state.ui.cartIsVisible);
   const cart = useSelector((state) => state.cart);
   const notification = useSelector((state) => state.ui.notification);
-
-
-
+  console.log(cart)
   useEffect(() => {
     if (isInitial) {
       isInitial = false;
       return;
     }
-    dispatch(sendCartData(cart));
+    if (cart.changed) {
+      
+      dispatch(sendCartData(cart));
+    }
   }, [cart, dispatch]);
   useEffect(() => {
     dispatch(fetchCartData());
