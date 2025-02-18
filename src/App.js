@@ -27,13 +27,7 @@ function App() {
         }
       );
       if (!response.ok) {
-        dispatch(
-          showNotification({
-            status: "error",
-            title: "Error...",
-            message: "Sending cart data failed",
-          })
-        );
+        throw new Error("Sending cart data failed");
       }
 
       dispatch(
@@ -45,8 +39,16 @@ function App() {
       );
       // const responseData = await response.json();
     };
-    sendCartData();
-  }, [cart]);
+    sendCartData().catch((error) => {
+      dispatch(
+        showNotification({
+          status: "error",
+          title: "Error...",
+          message: "Sending cart data failed",
+        })
+      );
+    });
+  }, [cart, dispatch]);
 
   return (
     <Layout>
