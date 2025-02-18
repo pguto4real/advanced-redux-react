@@ -3,8 +3,8 @@ import Cart from "./components/Cart/Cart";
 import Layout from "./components/Layout/Layout";
 import Products from "./components/Shop/Products";
 import { useEffect } from "react";
-import { showNotification } from "./store/ui-slice";
 import Notification from "./components/UI/Notification";
+import { sendCartData } from "./store/cart-slice";
 
 let isInitial = true;
 function App() {
@@ -14,31 +14,11 @@ function App() {
   const notification = useSelector((state) => state.ui.notification);
 
   useEffect(() => {
-    const sendCartData = async () => {
-     
-      
-      dispatch(
-        showNotification({
-          status: "success",
-          title: "Success...",
-          message: "Sent cart data successfully",
-        })
-      );
-      // const responseData = await response.json();
-    };
     if (isInitial) {
       isInitial = false;
       return;
     }
-    sendCartData().catch((error) => {
-      dispatch(
-        showNotification({
-          status: "error",
-          title: "Error...",
-          message: "Sending cart data failed",
-        })
-      );
-    });
+    sendCartData(cart);
   }, [cart, dispatch]);
   return (
     <>

@@ -46,7 +46,7 @@ const cartSlice = createSlice({
   },
 });
 
-const sendCartData = async (cart) => {
+export const sendCartData = async (cart) => {
   return async (dispatch) => {
     dispatch(
       showNotification({
@@ -67,6 +67,26 @@ const sendCartData = async (cart) => {
         throw new Error("Sending cart data failed");
       }
     };
+
+    try {
+      await sendRequest();
+
+      dispatch(
+        showNotification({
+          status: "success",
+          title: "Success...",
+          message: "Sent cart data successfully",
+        })
+      );
+    } catch (error) {
+      dispatch(
+        showNotification({
+          status: "error",
+          title: "Error...",
+          message: "Sending cart data failed",
+        })
+      );
+    }
   };
 };
 
