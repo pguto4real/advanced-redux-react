@@ -27,7 +27,13 @@ function App() {
         }
       );
       if (!response.ok) {
-        throw new Error("Sending cart data failed");
+        dispatch(
+          showNotification({
+            status: "error",
+            title: "Error...",
+            message: "Sending cart data failed",
+          })
+        );
       }
 
       dispatch(
