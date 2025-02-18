@@ -1,3 +1,4 @@
+import { replaceCart } from "./cart-slice";
 import { showNotification } from "./ui-slice";
 export const fetchCartData = () => {
   return async (dispatch) => {
@@ -9,27 +10,20 @@ export const fetchCartData = () => {
         throw new Error("failed to fetch cart data");
       }
       const responsedata = await response.json();
-      return data
+      return responsedata;
     };
     try {
-        const cartData = await fetchData();
-  
-        dispatch(
-          showNotification({
-            status: "success",
-            title: "Success...",
-            message: "Sent cart data successfully",
-          })
-        );
-      } catch (error) {
-        dispatch(
-          showNotification({
-            status: "error",
-            title: "Error...",
-            message: "Fetching cart data failed",
-          })
-        );
-      }
+      const cartData = await fetchData();
+      dispatch(replaceCart(cartData));
+    } catch (error) {
+      dispatch(
+        showNotification({
+          status: "error",
+          title: "Error...",
+          message: "Fetching cart data failed",
+        })
+      );
+    }
   };
 };
 export const sendCartData = (cart) => {
