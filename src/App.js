@@ -18,7 +18,7 @@ function App() {
       isInitial = false;
       return;
     }
-    sendCartData(cart);
+    dispatch(sendCartData(cart));
   }, [cart, dispatch]);
   return (
     <>

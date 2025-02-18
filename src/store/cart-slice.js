@@ -46,7 +46,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const sendCartData = async (cart) => {
+export const sendCartData = (cart) => {
   return async (dispatch) => {
     dispatch(
       showNotification({
