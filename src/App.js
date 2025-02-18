@@ -15,24 +15,8 @@ function App() {
 
   useEffect(() => {
     const sendCartData = async () => {
-      dispatch(
-        showNotification({
-          status: "pending",
-          title: "Sending...",
-          message: "Sending cart data",
-        })
-      );
-      const response = await fetch(
-        "https://fir-practice-9c832-default-rtdb.firebaseio.com/cart.json",
-        {
-          method: "PUT",
-          body: JSON.stringify(cart),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Sending cart data failed");
-      }
-
+     
+      
       dispatch(
         showNotification({
           status: "success",

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { showNotification } from "./ui-slice";
 
 const initialState = { items: [], cartTotal: 0, totalPrice: 0 };
 
@@ -22,13 +23,13 @@ const cartSlice = createSlice({
         extistingCartItem.quantity++;
         extistingCartItem.totalPrice += newItem.price;
       }
-    state.totalPrice = state.items.reduce((totalPrice, item) => {
+      state.totalPrice = state.items.reduce((totalPrice, item) => {
         return totalPrice + item.quantity * item.price;
       }, 0);
     },
     removeItemFromCart(state, action) {
       const itemId = action.payload.id;
-    
+
       const extistingCartItem = state.items.find((item) => item.id === itemId);
       if (extistingCartItem.quantity === 1) {
         state.items = state.items.filter((item) => item.id !== itemId);
@@ -44,6 +45,30 @@ const cartSlice = createSlice({
     // clearCart() {},
   },
 });
+
+const sendCartData = async (cart) => {
+  return async (dispatch) => {
+    dispatch(
+      showNotification({
+        status: "pending",
+        title: "Sending...",
+        message: "Sending cart data",
+      })
+    );
+    const sendRequest = async () => {
+      const response = await fetch(
+        "https://fir-practice-9c832-default-rtdb.firebaseio.com/cart.json",
+        {
+          method: "PUT",
+          body: JSON.stringify(cart),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Sending cart data failed");
+      }
+    };
+  };
+};
 
 export const { addItemToCart, removeItemFromCart } = cartSlice.actions;
 export default cartSlice.reducer;
