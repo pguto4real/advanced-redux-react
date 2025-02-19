@@ -39,14 +39,14 @@ export const DUMMY_PRODUCTS = [
       "A juicy veggie patty served on a whole grain bun with lettuce, tomato, and a tangy sauce.",
     image: "images/veggie-burger.jpg",
   },
-//   {
-//     id: "m6",
-//     name: "Grilled Chicken Sandwich",
-//     price: "10.99",
-//     description:
-//       "Tender grilled chicken breast with avocado, bacon, lettuce, and honey mustard on a toasted bun.",
-//     image: "images/grilled-chicken-sandwich.jpg",
-//   },
+  {
+    id: "m6",
+    name: "Grilled Chicken Sandwich",
+    price: "10.99",
+    description:
+      "Tender grilled chicken breast with avocado, bacon, lettuce, and honey mustard on a toasted bun.",
+    image: "images/grilled-chicken-sandwich.jpg",
+  },
 //   {
 //     id: "m7",
 //     name: "Steak Frites",
