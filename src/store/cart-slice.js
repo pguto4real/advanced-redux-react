@@ -49,7 +49,7 @@ const cartSlice = createSlice({
         return totalPrice + item.quantity * item.price;
       }, 0);
     },
-    // clearCart() {},
+   
   },
 });
 
